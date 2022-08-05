@@ -1,0 +1,36 @@
+/*input{
+    width: 100px;
+    transition: 1s;
+}
+input:focus{
+    border: 3px solid red;
+    width: 300px;
+    transition: 1s;
+}*/
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    /*animation-name: move;
+    animation-duration: 5s;
+    animation-delay: 2s;
+    animation-interation-count: infinite;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;*/
+    animation: move 5s 2s infinite alternate;
+}
+
+@keyframes move{
+    0%{
+        left: 0px;
+    }
+    100%{
+        left:600px;
+        top: 300px;
+        background:blue;
+        transform: rotate(180deg);
+    }
+}

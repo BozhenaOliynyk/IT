@@ -1,0 +1,54 @@
+li {
+    font-size: 30px;
+    transition: 1s;
+    position: relative;
+}
+li:nth-last-of-type(odd){
+    color: green;
+}
+li:nth-last-of-type(even){
+    color: red;
+}
+li:hover {
+    color: black;
+    font-size: 20px;
+}
+li:first-child{
+    color: blue;
+}
+li:last-child{
+    color: yellow;
+}
+a:link{
+    color: aqua;
+}
+a:visited{
+    color: chocolate;
+}
+/*li::after{
+    content: ""
+    position: absolute;
+    top: 0px;
+    width: 60px;
+    height: 50px;
+    background-color: aqua;
+}*/
+li::before{
+    content: "🔥"
+}
+p::first-letter{
+    color: red;
+    font-size: 50px;
+}
+p::first-line{
+    color: blueviolet;
+    font-size: 20px;
+}
+p::selection{
+    color: greenyellow
+}
+input:focus{
+    border: 50px;;
+    height: 200px;
+    width: 500px;
+}

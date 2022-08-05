@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+        }
+
+        #color-input.none {
+            display: none;
+        }
+
+        #btn-color.none {
+            display: none;
+        }
+
+        #color-input {
+            display: inline-block;
+            padding-left: 5px;
+            margin: 10px;
+            margin-right: 0px;
+            width: 250px;
+            height: 30px;
+            border-radius: 10px;
+            border-color: black;
+            border-width: 1, 5px;
+            border-bottom-right-radius: 0%;
+            border-top-right-radius: 0%;
+        }
+
+        #btn-color {
+            display: inline-block;
+            margin: 10px;
+            margin-left: 0px;
+            height: 34px;
+            width: 100px;
+            background-color: black;
+            color: white;
+            border-radius: 10px;
+            border-bottom-left-radius: 0%;
+            border-top-left-radius: 0%;
+        }
+
+        .btn__start-stop {
+            display: none;
+        }
+
+        .btn__start-stop.active {
+            display: inline-block;
+            margin: 5px;
+            width: 100px;
+            height: 100px;
+            background-color: rgb(0, 184, 184);
+            color: white;
+            font-size: 20px;
+            border: none;
+        }
+
+        @keyframes move {
+            0% {
+                left: 0px;
+            }
+
+            50%{
+                left: 400px;
+                top: 400px;
+            }
+
+            100% {
+                left: 900px;
+                top: 900px;
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="text" id="color-input" placeholder="Write some colors through the space">
+    <button type="button" id="btn-color">Make a box</button>
+
+    <button class="btn__start-stop">Start</button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+
+<!-- 
+const inputColor = document.querySelector('#color-input');
+const btnColorAdd = document.querySelector('#btn-color');
+const btnStartStop = document.querySelector('.btn__start-stop')
+
+btnColorAdd.addEventListener('click', function () {
+    let colors = inputColor.value.split(" ");
+    colors.forEach(element => {
+        let box = document.createElement('div')
+        box.className = "box";
+        box.style.background = element;
+        document.body.append(box)
+    })
+
+    inputColor.classList.add('none')
+    btnColorAdd.classList.add('none')
+
+    btnStartStop.classList.add('active')
+
+    btnStartStop.addEventListener('click', function () {
+        btnStartStop.textContent = 'Stop'
+        btnStartStop.style.animation = 'move 2s infinite alternate'
+    })
+}) -->
+
+
+
+
+
+<!-- //      red blue green yellow purple black -->
