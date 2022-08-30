@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+
+    <div class="timer-container" id="timer1">
+        <h1 class="timer-title">
+            There is only
+        </h1>
+        <div class="timer-numbers">
+            <div class="days">0</div>
+            <div class="hours">0</div>
+            <div class="minutes">0</div>
+            <div class="seconds">0</div>
+        </div>
+        <h1 class="timer-title">
+            for you to train your brain before school
+        </h1>
+    </div>
+
+    <div class="btn-box">
+        <button class="btn-easy">Easy riddle</button>
+        <button class="btn-middle">Middle riddle</button>
+        <button class="btn-hard">Hard riddle</button>
+    </div>
+
+
+    <div class="tab-easy">
+        <p class="tab-easy__riddle">wzerg</p>
+        <div class="tab-easy-write">
+            <input type="text" class="tab-easy__input" placeholder="Write your answer">
+            <button class="tab-easy__btn">Check</button>
+        </div>
+    </div>
+    <div class="tab-middle">
+        <p class="tab-middle__riddle"></p>
+        <div class="tab-middle-write">
+            <input type="text" class="tab-middle__input" placeholder="Write your answer">
+            <button class="tab-middle__btn">Check</button>
+        </div>
+    </div>
+    <div class="tab-hard">
+        <p class="tab-hard__riddle"></p>
+        <div class="tab-hard-write">
+            <input type="text" class="tab-hard__input" placeholder="Write your answer">
+            <button class="tab-hard__btn">Check</button>
+        </div>
+    </div>
+
+    <div class="popup__bg">
+        <div class="popup">
+            <i class="popup__close "></i>
+            <p class="popup__title">Sorry, your time is out</p>
+            <div class="popup__img">
+                <img src="img/bad brain.jpg" alt="">
+            </div>
+            <button type="submit" class="popup__btn">Ok</button>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

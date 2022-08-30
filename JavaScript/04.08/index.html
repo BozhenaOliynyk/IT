@@ -13,9 +13,42 @@
         }
 
         .box {
+            position: relative;
             width: 100px;
             height: 100px;
             margin: 5px;
+        }
+
+        /* .box.run {
+            position: relative;
+            animation: run 2s 1s infinite alternate;
+        } */
+
+        @keyframes run {
+            0% {
+                left: 0px;
+                top: 200px;
+            }
+
+            25%{
+                left: 200px;
+                top: 500px;
+            }
+
+            50% {
+                left: 900px;
+                top: 15px;
+            }
+            75%{
+                left: 1150px;
+                top: 500px;
+            }
+
+            100% {
+                left: 100px;
+                top: 50px;
+                transform: rotate(360deg);
+            }
         }
 
         #color-input.none {
@@ -53,6 +86,25 @@
             border-top-left-radius: 0%;
         }
 
+        .timer{
+            display: none;
+            position: absolute;
+            align-items: center;
+            justify-content: center;
+            margin-left: 45%;
+            color: black;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 30px;
+            background-color: rgba(255, 255, 255, 0.747);
+            width: 170px;
+            height: 60px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        .timer.active{
+            display: flex;
+        }
+
         .btn__start-stop {
             display: none;
         }
@@ -68,21 +120,177 @@
             border: none;
         }
 
+        .btn__start-stop.active.move {
+            position: relative;
+            animation: move 2.5s infinite alternate;
+        }  
         @keyframes move {
             0% {
                 left: 0px;
+                top: 0px;
             }
 
-            50%{
-                left: 400px;
-                top: 400px;
+            25% {
+                left: 1150px;
+                top: 200px;
             }
 
-            100% {
-                left: 900px;
-                top: 900px;
+            50% {
+                left: 550px;
+                top: 550px;
+            }
+            75%{
+                left: 200px;
+                top: 50px;
+            }
+            100%{
+                left: 1150px;
+                top: 550px;
                 transform: rotate(360deg);
             }
+        }
+
+        .popup-win__bg {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.4);
+            transition: 1s;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .popup-win__bg.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .popup-win {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            background-color: #ffff;
+            padding: 20px;
+            border-radius: 20px;
+            justify-content: center;
+        }
+
+        .popup-win.active {
+            display: inline-block;
+            opacity: 1;
+        }
+
+        .popup-win__close{
+            display: flex;
+            margin-left: 95%;
+            cursor: pointer;
+            transition-duration: 0.5s;
+        }
+        .popup-win__close:hover{
+            transform: scale(1.1);
+        }  
+
+        .popup-win__img {
+            display: flex;
+            justify-content: center;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .popup-win__text {
+            display: flex;
+            justify-content: center;
+            color: black;
+            font-size: 25px;
+            margin: 0 auto;
+        }
+
+        .popup-win__btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            width: 100px;
+            height: 30px;
+            border: none;
+            border-radius: 10px;
+            margin-top: 15px;
+            background-color: rgb(0, 127, 177);
+            color: #ffff;
+        }
+        .popup-lose {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            background-color: #ffff;
+            padding: 20px;
+            border-radius: 20px;
+            justify-content: center;
+        }
+
+        .popup-lose.active {
+            display: inline-block;
+            opacity: 1;
+        }
+        .popup-lose__bg {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.4);
+            transition: 1s;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .popup-lose__bg.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .popup-lose__img {
+            display: flex;
+            justify-content: center;
+            width: 50%;
+            margin: 0 auto;
+        }
+        .popup-lose__text {
+            display: flex;
+            justify-content: center;
+            color: black;
+            font-size: 25px;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+        .popup-lose__btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            width: 100px;
+            height: 30px;
+            border: none;
+            border-radius: 10px;
+            margin-top: 15px;
+            background-color: rgb(0, 0, 0);
+            color: #ffff;
+        }
+        .popup-lose__close{
+            display: flex;
+            margin-left: 95%;
+            cursor: pointer;
+            transition-duration: 0.5s;
+        }
+        .popup-lose__close:hover{
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -91,42 +299,29 @@
 
     <input type="text" id="color-input" placeholder="Write some colors through the space">
     <button type="button" id="btn-color">Make a box</button>
+    
+    <div class="timer">00:30</div>
 
     <button class="btn__start-stop">Start</button>
+
+    <div class="popup-win__bg">
+        <form action="" class="popup-win">
+            <img class = "popup-win__close" src="x-lg.svg" alt="">
+            <img class="popup-win__img" src="photo_2022-08-05_16-19-06.jpg" alt="">
+            <p class="popup-win__text">You won!!!</p>
+            <button class="popup-win__btn">Ok</button>
+        </form>
+    </div>
+    <div class="popup-lose__bg">
+        <form action="" class="popup-lose">
+            <img class = "popup-lose__close" src="x-lg.svg" alt="">
+            <img class="popup-lose__img" src="smile" alt="">
+            <p class="popup-lose__text">Your time is gone( You lose(((</p>
+            <button class="popup-lose__btn">Ok</button>
+        </form>
+    </div>
 
     <script src="script.js"></script>
 </body>
 
 </html>
-
-
-<!-- 
-const inputColor = document.querySelector('#color-input');
-const btnColorAdd = document.querySelector('#btn-color');
-const btnStartStop = document.querySelector('.btn__start-stop')
-
-btnColorAdd.addEventListener('click', function () {
-    let colors = inputColor.value.split(" ");
-    colors.forEach(element => {
-        let box = document.createElement('div')
-        box.className = "box";
-        box.style.background = element;
-        document.body.append(box)
-    })
-
-    inputColor.classList.add('none')
-    btnColorAdd.classList.add('none')
-
-    btnStartStop.classList.add('active')
-
-    btnStartStop.addEventListener('click', function () {
-        btnStartStop.textContent = 'Stop'
-        btnStartStop.style.animation = 'move 2s infinite alternate'
-    })
-}) -->
-
-
-
-
-
-<!-- //      red blue green yellow purple black -->

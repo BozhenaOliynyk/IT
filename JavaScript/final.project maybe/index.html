@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="timer-container" id="timer1">
+        <h1 class="timer-title">
+            There is only
+        </h1>
+        <div class="timer-numbers">
+            <div class="days">0</div>
+            <div class="hours">0</div>
+            <div class="minutes">0</div>
+            <div class="seconds">0</div>
+        </div>
+        <h1 class="timer-title">
+            for you to train your brain before school
+        </h1>
+    </div>
+
+
+    <div class="btn-box">
+        <button class="btn-tabs-open active" data-tab="#easy">Easy riddle</button>
+        <button class="btn-tabs-open" data-tab="#middle">Middle riddle</button>
+        <button class="btn-tabs-open" data-tab="#hard">Hard riddle</button>
+    </div>
+
+
+    <div class="tabs__content">
+        <div class="tabs-item active" id="easy">
+            <p class="tabs__riddle">Without windows, without doors, there are lots of people</p>
+            <div class="tabs-write">
+                <input type="text" class="tabs__input" id="input_easy" placeholder="Write your answer">
+                <button class="tabs__btn">Check</button>
+            </div>
+        </div>
+        <div class="tabs-item" id="middle">
+            <p class="tabs__riddle">What doesn't fit in the largest jar?</p>
+            <div class="tabs-write">
+                <input type="text" class="tabs__input" id="input_middle" placeholder="Write your answer">
+                <button class="tabs__btn">Check</button>
+            </div>
+        </div>
+        <div class="tabs-item" id="hard">
+            <p class="tabs__riddle">There are 2 coints, in total they are 3 hrn. One of them not 1 hrn, what are these
+                coints?</p>
+            <div class="tabs-write">
+                <input type="text" class="tabs__input" id="input_hard" placeholder="Write your answer">
+                <button class="tabs__btn" type="submit">Check</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup__bg">
+        <div class="popup">
+            <i class="popup__close "></i>
+            <p class="popup__title">Sorry, your time is out</p>
+            <div class="popup__img">
+                <img src="img/bad brain.jpg" alt="">
+            </div>
+            <button type="submit" class="popup__btn">Ok</button>
+        </div>
+    </div>
+
+    <div class="form-section">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Create your riddle</h4>
+                <p class="card-text">If you know some interesting riddles, you can share with us.</p>
+                <form action="" name="add-task">
+                    <div class="card-writing">
+                        <div class="inputs-box">
+                            <input type="text" class="card-input" name="" id="title" placeholder="Write your riddle">
+                            <input type="text" class="card-input" name="" id="body" placeholder="Write an answer">
+                        </div>
+                        <button class="card-btn">Send</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="popup__bg">
+        <div class="popup-del">
+            <i class="popup__close "></i>
+            <h1 class='popup-del__title'>Are you sure you want delete this riddle?</h1>
+            <div class="popup-del-btn">
+                <button class="btn-no">No</button>
+                <button class="btn-yes">Yes</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

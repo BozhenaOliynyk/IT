@@ -1,7 +1,7 @@
-const popupBg = document.querySelector(".popup__bg")
-const popup = document.querySelector(".popup")
-const popupOpen = document.querySelector(".open-btn")
-const popupClose = document.querySelector(".close-popup")
+const popupBg = document.querySelector(".popup__bg");
+const popup = document.querySelector(".popup");
+const popupOpen = document.querySelector(".open-btn");
+const popupClose = document.querySelector(".close-popup");
 
 popupOpen.addEventListener('click', function () {
     popupBg.classList.add("active")

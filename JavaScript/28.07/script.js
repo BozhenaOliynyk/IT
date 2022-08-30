@@ -63,28 +63,24 @@
 
 
 
-
-let entered = prompt("Введіть кольори");
-console.log(entered);
-
-let colors = entered.split(' ')
-console.log(colors)
+const inputColor = document.querySelector('#color-input');
+const btnColorAdd = document.querySelector('#btn-color');
 
 
+btnColorAdd.addEventListener('click', function () {
+    let colors = inputColor.value.split(' ');
+    console.log(colors);
 
-
-const box = document.querySelectorAll(".box")
-
-
-colors.forEach(element => {
-    console.log(element);
-    box.style.background = element;    
+    colors.forEach(element => {
+        let box = document.createElement('div')
+        box.className = "box";
+        box.style.background = element;
+        document.body.append(box)
+        box.addEventListener('click', function () {
+            let boxId = box.getAttribute("data-box");
+            console.log(boxId);
+        
+            box.remove(boxId)
+        })
+    })
 })
-
-box.addEventListener('click', function () {
-    let boxId = box.getAttribute("data-box");
-    console.log(boxId);
-
-    box.remove(boxId)
-}
-)
