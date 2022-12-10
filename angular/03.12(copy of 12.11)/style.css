@@ -98,7 +98,7 @@
     color: #fff;
     border-color: #fff;
 }
-.card__num{
+.card__id{
     display: flex;
     justify-content: end;
     width: 45px;
@@ -134,8 +134,8 @@
     height: 100vh;
     background: rgba(255, 255, 255, 0.356);
     transition: 0.8s;
-    opacity: 0;
-    pointer-events: none;
+    /* opacity: 0;
+    pointer-events: none; */
 }
 .pop-up-bg.active{
     opacity: 1;
@@ -143,7 +143,7 @@
 }
 .pop-up{
     position: absolute;
-    display: none;
+    /* display: none; */
     max-width: 600px;
     padding: 50px;
     background-color: rgb(46, 46, 46);
@@ -154,9 +154,13 @@
     margin-top: 100px;
     padding-top: 20px;
     padding-bottom: 40px;
+    transform: translate3d(-50%, -50%);
+    user-select: none;
+    z-index: 199;
 }
-.pop-up.active{
-    display: inline-block;
+.pop-up.popup-move{
+    cursor: move;
+    box-shadow: 8px 10px 15px -1px rgba(0,0,0,0.4);
 }
 
 .bi{
@@ -165,6 +169,12 @@
     width: 27px;
     margin-left: 500px;
     margin-bottom: 5px;
+    transition: 0.5s;
+}
+
+.bi:hover{
+    height: 33px;
+    width: 33px;
 }
 
 .title-pop-up{
@@ -222,7 +232,7 @@
     transform: scale(1.1);
     box-shadow: 7px 9px 16px -1px rgba(0, 0, 0, 0.212);
 }
-
+ 
 ::placeholder{
     color: rgb(46, 46, 46);
     font-size: 11px;

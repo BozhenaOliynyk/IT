@@ -1,6 +1,6 @@
 const popup = document.querySelector(".pop-up");
 const popupBg = document.querySelector(".pop-up-bg");
-const btnOpenPopup = document.querySelector(".open-pop-up");
+// const btnOpenPopup = document.querySelector(".open-pop-up");
 const btnClosePopup = document.querySelector(".bi");
 const inputTitle = document.getElementById("title");
 const inputText = document.getElementById("text");
@@ -10,10 +10,14 @@ const postBox = document.querySelector(".posts-box");
 const popUp = document.querySelector(".pop-up");
 
 
+const form = document.querySelector("form-add-post");
+
+
+
 
 
 // function popupMove(e) {
-//     popUp.style.left = e.pageX - popUp.offsetWidth / 2 + 'px';        //style.left - мiсце розташування по осі х ; offsetWidth - зміна місця розташування по щсф х; pageX - показує де я клацаю по осі х; /2+'px' - щоб знайти його центр
+//     popUp.style.left = e.pageX - popUp.offsetWidth / 2 + 'px';        //style.left - місце розташування по осі х ; offsetWidth - зміна місця розташування по щсф х; pageX - показує де я клацаю по осі х; /2+'px' - щоб знайти його центр
 //     popUp.style.top = e.pageY - popUp.offsetHeight / 2 + 'px';
 // }
 
@@ -28,22 +32,88 @@ const popUp = document.querySelector(".pop-up");
 
 
 
+let active = false;
+let currentX;
+let currentY;
+let initialX;
+let initialY;
+let xOffset = 0;
+let yOffset = 0;
 
-btnOpenPopup.addEventListener('click', function () {
-    popup.classList.add('active');
-    popupBg.classList.add('active');
-    btnClosePopup.addEventListener('click', function () {
-        // document.removeEventListener('mousedown', popupMove);
-        popup.classList.remove('active');
-        popupBg.classList.remove('active');
-    });
-    document.addEventListener('click', (event) => {
-        if (event.target === popupBg) {
-            popupBg.classList.remove("active")
-            popup.classList.remove("active")
+document.addEventListener( 'touchstart', dragStart, false );
+document.addEventListener( 'touchend', dragEnd, false );
+document.addEventListener( 'touchmove', drag, false );
+
+document.addEventListener( 'mousedown', dragStart, false );
+document.addEventListener( 'mouseup', dragEnd, false );
+document.addEventListener( 'mousemove', drag, false );
+
+
+function dragStart(e) {
+    if (e.type === 'touchstart') {
+        initialX = e.touches[0].clientX - xOffset;
+        initialY = e.touches[0].clientY - yOffset;
+    } else {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+    }
+
+    if (e.target === popup) {
+        active = true;
+        addActiveClass()
+    }
+}
+
+function dragEnd(e) {
+    initialX = currentX;
+    initialY = currentY;
+    active = false;
+    addActiveClass()
+}
+
+function addActiveClass() {
+    popup.classList.toggle('popup-move');
+}
+
+function drag(e) {
+    if (active) {
+        e.preventDefault();
+
+        if (e.type === 'touchmove') {
+            currentX = e.touches[0].clientX - initialX;
+            currentY = e.touches[0].clientY - initialY;
+        } else {
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
         }
-    })
-})
+
+        xOffset = currentX;
+        yOffset = currentY;
+
+        setTranslate(currentX, currentY, popup)
+    }
+}
+
+
+function setTranslate(currentX, currentY, el) {
+    el.style.transform = 'translate3d' + currentX + 'px, ' + currentY + 'px, 0'
+}
+
+
+
+
+
+
+
+
+btnClosePopup.addEventListener('click', function (e) {
+    e.preventDefault();
+    popup.hidden = true;
+    popupBg.hidden = true;
+    
+});
+
+
 function getPosts(callback) {
     const xhr = new XMLHttpRequest();
     console.log(xhr);
@@ -64,16 +134,16 @@ function getPosts(callback) {
 };
 
 
-function pageReload() {
-    btnGetPosts.textContent = 'Сховати пости';
-    btnGetPosts.addEventListener("click", function () {
-        location.reload()
-    })
-}
+// function pageReload() {
+//     btnGetPosts.textContent = 'Сховати пости';
+//     btnGetPosts.addEventListener("click", function () {
+//         location.reload()
+//     })
+// }
 
 
 btnGetPosts.addEventListener('click', () => {
-    pageReload();
+    // pageReload();
     getPosts((response) => {
         renderPosts(response)
     })
@@ -84,12 +154,12 @@ function cardTemplate(post) {
     // card.className = 'card';
     card.classList.add('card');      //то саме, але рахується потужнішим
 
+    const id = document.createElement('div');
+    id.classList.add('card__id');
+    id.textContent = post.id;
+
     const cardBody = document.createElement("div");
     cardBody.classList.add('card-body');
-
-    const cardNum = document.createElement('div');
-    cardNum.classList.add('card__num');
-    cardNum.textContent = post.id
 
     const title = document.createElement('h3');
     title.classList.add('card__title');
@@ -100,7 +170,7 @@ function cardTemplate(post) {
     article.textContent = post.body;
 
     card.appendChild(cardBody);
-    cardBody.appendChild(cardNum);
+    cardBody.appendChild(id);
     cardBody.appendChild(title);
     cardBody.appendChild(article);
     return (card)
@@ -110,53 +180,12 @@ function cardTemplate(post) {
 
 function renderPosts(response) {
     const fragment = document = document.createDocumentFragment();
-    // let i = 101
-    // i=i++
     response.forEach(post => {
-        // response.id = i;
         const card = cardTemplate(post);
         fragment.appendChild(card)
     })
     postBox.appendChild(fragment);
 }
-
-
-
-
-function createNewPost(num) {
-
-    const newPost = {
-        title: 'title post',
-        body: 'body text post',
-        id: 1,
-    };
-
-
-
-    // newPost.id=num;
-
-    newPost.title = inputTitle.value;
-    newPost.body = inputText.value;
-    console.log(newPost);
-
-    createPosts(newPost, response => {
-        // console.log(response);
-        const card = cardTemplate(response)
-        postBox.insertAdjacentElement('afterbegin', card)
-        console.log(card);
-    })
-    inputTitle.value = null;
-    inputText.value = null;
-
-}
-
-
-// let i = 101;
-btnAddPosts.addEventListener('click', function () {
-    createNewPost();
-    pageReload()
-    // i=i++;
-})
 
 
 function createPosts(body, cb) {
@@ -180,3 +209,29 @@ function createPosts(body, cb) {
 }
 
 
+
+
+
+// btnAddPosts.addEventListener('click', function () {
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const title = formData.get('title');
+    const text = formData.get('text');
+    console.log(title);
+
+    let newPost = {
+        title: title,
+        body: text,
+        id: 1,
+    };
+
+
+    createPosts(newPost, response => {
+        const card = cardTemplate(response);
+        postBox.insertAdjacentElement('afterbegin', card)
+    })
+    form.reset()
+});
+    // pageReload();
+// })
