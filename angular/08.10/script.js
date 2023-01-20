@@ -17,7 +17,7 @@
 //     this.human = true;
 //     this.hello = function () {
 //         console.log('Hi ' + this.name)
-//     }
+//     } 
 // }
 
 // let oleg = new User('Oleg', 30);               // функція крнструктор, сама створює об'єкт   

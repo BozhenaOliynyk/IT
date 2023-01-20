@@ -1,0 +1,22 @@
+
+<a href="http://localhost:4200/" class="back"> Повернутись на головну сторінку</a>
+
+
+<div class="container">
+    <div *ngFor="let product of rings">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img [src]="product.img" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{product.title}}</h5>
+                    <p class="card-text">{{product.material}}</p>
+                    <div class="card-footer">{{product.price|currency}}</div>
+                    <a href="#" class="btn btn-primary">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ 

@@ -59,4 +59,4 @@ btnGetPosts.addEventListener("click", function () {
         });
         postBox.appendChild(fragment);
     });
-}) 
+})  
