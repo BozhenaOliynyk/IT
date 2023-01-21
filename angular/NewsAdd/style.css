@@ -30,7 +30,6 @@ body{
     padding: 20px;
     max-width: 350px;
     box-shadow: 5px 5px 6px 8px rgba(0, 0, 0, 0.096);
-    border-radius: 5px;
     margin-top: 100px;
 }
 
@@ -45,17 +44,17 @@ body{
     flex-direction: column;
 }
 
-#search-form{
+.search-form{
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 
-#search-form select{
+.search-form select{
     margin-top: 10px;
 }
 
-#search-form select, 
+.search-form select, 
 label,
 input{
     font-size: 16px;
@@ -66,26 +65,26 @@ input{
     transition: 0.5s;
     margin-bottom: 20px;
 }
-#search-form input:focus{
+.search-form input:focus{
     border-bottom: 2px solid rgb(93, 179, 104);
 } 
-#search-form select:focus{
+.search-form select:focus{
     border-bottom: 2px solid  rgb(93, 179, 104);
 }
-#search-form input:hover{
+.search-form input:hover{
     border-bottom: 2px solid  rgb(93, 179, 104);
 }
-#search-form select:hover{
+.search-form select:hover{
     border-bottom: 2px solid  rgb(93, 179, 104);
 }
 
-#search-form label{
+.search-form label{
     color: #000000b4;
     border: none;
     margin-bottom: 0px;
     padding-bottom: 5px;
 }
-
+ 
 .search-btn{
     top: 0px;
     left: 0px;
@@ -93,10 +92,9 @@ input{
     height: 43px;
     border: none;
     transition: 1.5s;
-    background: rgb(199, 255, 232);
+    background: rgb(199, 255, 216);
     margin: 0 auto;
     font-size: 12px;
-    border-radius: 3px;
 }
 .search-btn:hover{
     width: 100%;
@@ -119,7 +117,7 @@ input{
     display: inline-block;
     max-width: 500px;
     width: 80%;
-    background: rgb(199, 247, 255);
+    background: rgb(199, 255, 216);
     border-radius: 2px;
     margin-bottom: 20px;
     transition: 0.7s;
@@ -128,7 +126,7 @@ input{
 .card-news:hover{
     max-width: 550px;
     width: 100%;
-    background: rgb(184, 169, 252);
+    background: rgb(133, 255, 169);
     box-shadow: 8px 10px 34px 4px rgba(0,0,0,0.29);
 -webkit-box-shadow: 8px 10px 34px 4px rgba(0,0,0,0.29);
 -moz-box-shadow: 8px 10px 34px 4px rgba(0,0,0,0.29);
@@ -153,8 +151,13 @@ input{
 .card-news__content{
     font-size: 17px;
     font-weight: 300px;
+    margin-bottom: 20px;
 }
 
 .card-news__btn{
-    color: rgb(131, 53, 255);
-}
+    padding: 10px 15px;
+    font-size: 20px;
+    background: rgb(76, 174, 89);
+    color: #fff;
+    text-decoration: none;
+} 

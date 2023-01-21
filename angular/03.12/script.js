@@ -125,7 +125,7 @@ function getPosts(callback) {
         console.log('Everything is ok');
         const response = JSON.parse(xhr.response);
         console.log(response);
-        callback(response)     //дозволяє вийняти змінну з цієї функції, тобто дозволяє використовувати її за межами функції в якій її створили
+        callback(response)                                                                                                                                     //дозволяє вийняти змінну з цієї функції, тобто дозволяє використовувати її за межами функції в якій її створили
     });
 
     xhr.addEventListener('error', function () {
@@ -154,7 +154,7 @@ btnGetPosts.addEventListener('click', () => {
 function cardTemplate(post) {
     const card = document.createElement("div");
     // card.className = 'card';
-    card.classList.add('card');      //то саме, але рахується потужнішим
+    card.classList.add('card');                                                                                                                                  //то саме, але рахується потужнішим
 
     const id = document.createElement('div');
     id.classList.add('card__id');
@@ -214,15 +214,13 @@ function createPosts(body, cb) {
 
 
 
-// btnAddPosts.addEventListener('click', function () {
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    pageReload();
     const formData = new FormData(form);
     const title = formData.get('title');
     const text = formData.get('text');
     console.log(title);
-
+ 
     let newPost = {
         title: title,
         body: text,
@@ -236,4 +234,3 @@ form.addEventListener('submit', (e) => {
     })
     form.reset()
 });
-// })

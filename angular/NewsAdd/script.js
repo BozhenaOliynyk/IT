@@ -132,44 +132,50 @@
 
 
 
+
+
+
+
+
+
+
+
+
 const searchControls = document.querySelector('.search-controls');
+const themeInput = document.querySelector('.theme');
+const countrySelect = document.querySelector('.country');
 const searchBtn = document.querySelector('.search-btn');
-// const searchInput = document.querySelector('.search-input');
-// const countryInput = document.querySelector('#country');
+const form = document.querySelector('.search-form');
 
-// const form = document.form['search-form'];
-// const countrySelect = form.elements('');
+const container = document.querySelector('.news-section__container');
 
-// form.addEventListener('submit', (e) => {
-//     e.preventDefault();
-//     loadNews()
-// })
+
 
 function customHttp() {
     return {
         get(url, cb) {
             try {
-                const xhr = new XMLHttpRequest();
+                const xhr = new XMLHttpRequest()
                 xhr.open("GET", url);
                 xhr.addEventListener('load', () => {
                     if (Math.floor(xhr.status / 100) !== 2) {
-                        cb(`Error. status code : ${xhr.status}`, xhr)
+                        cb(`ERROR. status code: ${xhr.status}`, xhr)
                         return
                     }
                     const response = JSON.parse(xhr.responseText);
-                    cb(null, response);
+                    cb(null, response)
                 })
                 xhr.addEventListener('error', () => {
-                    console.log('error')
+                    console.log('error');
                 })
-
-                xhr.send();
+                xhr.send()
             } catch (error) {
                 cb(error)
             }
 
 
         },
+
 
     }
 }
@@ -181,70 +187,88 @@ const http = customHttp();
 
 
 const newService = (function () {
-    const apiKey = '640d12fab4b74ad7976109bf08a8e1ec';
+    const apiKey = 'a6f51aabf284424693830e0e5b01af0a';
     const apiUrl = 'https://newsapi.org/v2';
 
+
+
     return {
-        topHeadlines(country, category, cb) {
+        topHeadlines(country = 'ua', category = 'technology', cb) {
             http.get(`${apiUrl}/top-headlines?country=${country}&category=${category}&apiKey=${apiKey}`, cb);
         },
+
         everything(query, cb) {
+
             http.get(`${apiUrl}/everything?q=${query}&apiKey=${apiKey}`, cb);
         }
     }
+
 })();
 
 
 
 
 
+searchBtn.addEventListener('click', function (e) {
+    e.preventDefault();
 
 
-// const country = countryInput.value;
-// const theme = searchInput.value;
-// console.log(theme);
-function loadNews() {
-        newService.topHeadlines('ua','war', onGetResponse);
-}
+    const country = countrySelect.value;
+    const theme = themeInput.value;
+    console.log(country, theme);
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    loadNews();
+    function loadNews() {
+        newService.topHeadlines(country, theme, onGetResponse)
+    }
+
+    container.innerHTML = loadNews();
+    // pop()
+
+    form.reset()
+
+
 })
 
 
-// searchBtn.addEventListener('click', function () {
-//     countryInput.value = '';
-//     searchInput.value = '';
-// })
 
+function onGetResponse(err, res) {
 
-
-function onGetResponse(res) {
-    console.log(res);
-    renderNews(res);
+    console.log('sdfsdf');
+    renderNews(res)
 }
 
 
 
-function renderNews(news) {
-    console.log(news)
-    const newsContainer = document.querySelector('.news-section__container')
+
+function renderNews(news) {    
+    const newsContainer = document.querySelector('.news-section__container');
+    console.log(news);
     let fragment = '';
     news.articles.forEach(newsItem => {
         const el = newsTemplate(newsItem)
         fragment += el
     });
+
     newsContainer.insertAdjacentHTML('afterbegin', fragment)
 }
 
 
 function newsTemplate({ urlToImage, title, url, description }) {
-
     if (urlToImage == undefined) {
-        urlToImage = 'https://images8.alphacoders.com/563/thumb-1920-563155.jpg'
-    }
+        urlToImage = 'https://images.prismic.io/cinsa/c42a5aaf-d00b-4be2-8af4-a8b1a427fce3_cinsa_ventajas_electrico_ecologico.jpg?auto=compress'
+    } 
+ 
+
+    // if (country == 'ua') {
+    //     img = 'https://images8.alphacoders.com/563/thumb-1920-563155.jpg'
+    // } else if (country == 'pl') {
+    //     img = "https://oscarazal.files.wordpress.com/2014/08/flag-of-poland.jpg?w=866&h=574"
+    // } else {
+    //     img = 'https://thumbs.dreamstime.com/b/rustic-american-flag-look-31157931.jpg'
+    // }
+
 
     return `<div class="card-news">
     <img class="card-news__img" src="${urlToImage}" alt="">
@@ -256,32 +280,3 @@ function newsTemplate({ urlToImage, title, url, description }) {
 </div>`
 }
 
-
-
-
-
-
-
-
-// function loadNews() {
-//     const country = countryInput.value;
-//     const theme = searchInput.value;
-
-
-//     if(!searchInput){
-//     newService.topHeadlines(country, onGetResponse);
-//     }
-//     else {
-//         newService.everything(theme, onGetResponse);
-//     }
-// };
-
-
-
-
-// searchBtn.addEventListener('click', function(){
-//     document.addEventListener('DOMContentLoaded', function () {
-//         loadNews()
-//     })
-//     console.log(loadNews)
-// })

@@ -76,7 +76,7 @@
     align-items: center;
     justify-content: space-aruond;
     flex-wrap: wrap;
-}
+} 
 .card{
     max-width: 500px;
     min-height: 200px;

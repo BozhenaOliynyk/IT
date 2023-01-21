@@ -4,11 +4,11 @@
 }
 .navbar-brand{
     font-size: 33px;
-    align-self: center;
+    align-items: center;
+    margin-left: 10px;
 }
 .nav-link{
     font-size: 22px;
-    align-self: center;
 }
 
 .speech{
@@ -17,4 +17,17 @@
 }
 p{
     font-size: 25px;
+}
+.log{
+    font-size: 22px;
+    color: rgb(142, 142, 142);
+    text-decoration: none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-right: 10px;
+}
+.log:hover{
+    color: rgb(189, 189, 189);
+}
+.collapse{
+    justify-content: space-between;
 }

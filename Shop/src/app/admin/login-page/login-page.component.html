@@ -3,26 +3,28 @@
 
 <form [formGroup]="form" ng-submit="submit()" class="container">
 
-    <h2>Увійдіть у ваш аккаунт</h2>
+    <h2>Log in</h2>
 
     <div class="form-control">
-        <p for="email">Емейл:</p>
+        <p for="email">Email:</p>
         <input type="email" id="email" formControlName="email">
         <div *ngIf="form.controls['email'].touched && form.controls['email'].invalid" class="error">
-            <small *ngIf="form.controls['email'].errors?.['required']">Введіть емейл</small>
-            <small *ngIf="form.controls['email'].errors?.['email']">Емейл невірний</small>
+            <small *ngIf="form.controls['email'].errors?.['required']">Enter email</small>
+            <small *ngIf="form.controls['email'].errors?.['email']">Email's wrong</small>
         </div>
     </div>
 
     <div class="form-control">
-        <p for="password">Пароль:</p>
+        <p for="password">Password:</p>
         <input type="password" formControlName="password" id="password" >
         <div *ngIf="form.controls['password'].touched && form.controls['password'].invalid" class="error">
-            <small *ngIf="form.controls['password'].errors?.['required']">Введіть пароль</small>
-            <small *ngIf="form.controls['password'].errors?.['minlength']">Пароль менший ніж 8 символів</small>
+            <small *ngIf="form.controls['password'].errors?.['required']">Enter password</small>
+            <small *ngIf="form.controls['password'].errors?.['minlength']">Password is shorter than 8 symbols</small>
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary btn-dark" [disabled]="form.invalid || submitted" href="#" >Увійти</button>
+    <button type="submit" class="btn btn-primary btn-dark" [disabled]="form.invalid || submitted" href="#" >
+        <a href="http://localhost:4200/">Log in</a>
+    </button>
 
 </form>
